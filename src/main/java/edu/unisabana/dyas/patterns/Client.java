@@ -1,12 +1,12 @@
-package main.java.edu.unisabana.dyas.patterns;
+package edu.unisabana.dyas.patterns;
 
-import main.java.edu.unisabana.dyas.patterns.utils.AdvancedAudioPlayer;
-
-// Cliente que utiliza directamente AdvancedAudioPlayer sin conocer la interfaz AudioPlayer
+// Cliente que usa el adaptador
 public class Client {
     public static void main(String[] args) {
-        AdvancedAudioPlayer advancedPlayer = new AdvancedAudioPlayer();
-        advancedPlayer.playMp4("video.mp4");
-        advancedPlayer.stop();
+        AudioPlayer audioPlayer = new AdvancedAudioPlayerAdapter(new AdvancedAudioPlayer());
+        audioPlayer.play("mp4", "video.mp4");
+        audioPlayer.play("vlc", "pelicula.vlc");
+        audioPlayer.play("mp3", "cancion.mp3"); 
+        audioPlayer.stop();
     }
 }
